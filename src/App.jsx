@@ -1,11 +1,11 @@
 import Header from './components/Header'
-// import { ways } from '/data'
+import { ways } from './data'
 
 function WayToTeach(props){
   return(
         <li>
           <p>
-            <strong>{props.title}</strong>{props.discription}
+            <strong>{props.title}</strong> {props.description}
           </p>
         </li>
   )
@@ -20,10 +20,24 @@ export default function App() {
       <h3>Наш подход к обучению</h3>
 
       <ul>
-        <WayToTeach title='111' discription = '222' />
-        <WayToTeach title='333' discription = '444' />
-      </ul>
+        <WayToTeach 
+        title={ways[0].title}
+        description = {ways[0].description}
+          />
+        <WayToTeach 
+        title={ways[1].title}
+        description = {ways[1].description} 
+         />
+        <WayToTeach 
+        title={ways[2].title}
+        description = {ways[2].description}
+          />
+        <WayToTeach 
+        title={ways[3].title}
+        description = {ways[3].description}
+          />
 
+      </ul>
     </section>
     </main>
     </div>
