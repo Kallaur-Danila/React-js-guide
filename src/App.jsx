@@ -5,10 +5,10 @@ import Button from './components/Button/Button'
 import { useState } from 'react'
 
 export default function App() {
-  const [content, setContent] = useState('Нажми на кнопку')
+  const [contentType, setContentType] = useState(null)
 
 function handleClick(type){
-  setContent(type)
+  setContentType(type)
 }
 
   return (
@@ -32,7 +32,8 @@ function handleClick(type){
       <Button onClick={() => handleClick('easy')}>Доступность</Button>
       <Button onClick={() => handleClick('program')}>Концентрация</Button>
 
-      <p>{differences[content]}</p>
+      { contentType ? <p>{differences[contentType]}</p> : <p>Нажми на кнопку</p>}
+      
     </section>
     </main>
     </div>
