@@ -1,10 +1,22 @@
 import { useState } from "react"
 import Button from "./Button/Button"
 
+
+function StateVsRef(){
+    const [value, setValue] = useState('')
+
+    return(
+        <div>
+            <h3>Input value: {value}</h3>
+            <input type="text"  value={value} onChange={(e)=> setValue(e.target.value)} className="control"/>
+        </div>
+    )
+}
+
 export default function FeedBackSection(){
     const [form, setForm] = useState({
         name: '',
-        hasError: true,
+        hasError: false,
         reason: 'help'
     })
     // const [name, setName] = useState('')
@@ -14,23 +26,14 @@ export default function FeedBackSection(){
     function handleNameChange(event){
         // setName(event.target.value)
         // setHasError(event.target.value.trim().length === 0)
-        setForm({
-            name:event.target.value,
-            hasError:event.target.value.trim().length === 0,
-        })
+        setForm (prev => ({...prev, name:event.target.value,
+            hasError:event.target.value.trim().length === 0,}))
     }
-
-    function toggleError(){
-        // setHasError((prev)=> !prev)
-    }
-
 
     return(
         <section>
             <h3>Обратная связь</h3>
-
-                <Button onClick = {toggleError}>Toggle Error</Button>
-            <form>
+            <form style ={{marginBottonm: '1rem'}}>
                 <label htmlFor="name">Ваше имя</label>
                 <input 
                 type="text" 
@@ -47,19 +50,19 @@ export default function FeedBackSection(){
                 id="reason" 
                 className="control" 
                 value={form.reason} 
-                onChange={(event) => setReason(event.target.value)}>
+                onChange={(event) => setForm((prev) => ({...prev, reason: event.target.value}))}>
                     <option value="error">Ошибка</option>
                     <option value="help">Нужна помощь</option>
                     <option value="suggest">Предложение</option>
                 </select>
 
 
-                <pre>
-                    {JSON.stringify(form,null,2)}
-                </pre>
+                {/* <pre>{JSON.stringify(form,null,2)} </pre> */}
 
                 <Button disabled ={form.hasError} isActive={!form.hasError}>Отправить</Button>
+
             </form>
+            <StateVsRef />
         </section>
     )
 }
