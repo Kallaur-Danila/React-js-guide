@@ -14,11 +14,12 @@ function StateVsRef(){
 
     return(
         <div>
-            <h3>Input value: {show && value}</h3>
-            <input type="text"
+            <h3>Input value: {show && input.current.value}</h3>
+            <input 
+            type="text"
             onKeyDown ={handleKeyDown}  
             ref={input}
-             className="control"/>
+            className="control"/>
         </div>
     )
 }
